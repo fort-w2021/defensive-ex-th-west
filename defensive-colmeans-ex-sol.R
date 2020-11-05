@@ -4,11 +4,11 @@ col_means <- function(df, na.rm = FALSE) {
   if (!checkmate::test_data_frame(df)) {
     df <- as.data.frame(df)
   }
-  # for (i in 1:ncol(df)) {
-  #   if (checkmate::test_factor(df[, i])) {
-  #     warning("Factor!")
-  #   }
-  # }
+  for (i in 1:ncol(df)) {
+    if (checkmate::test_factor(df[, i])) {
+      warning("Factor!")
+    }
+  }
 
   numeric <- vapply(df[, ,drop = FALSE], is.numeric, logical(1))
   numeric_cols <- df[, numeric, drop = FALSE]
